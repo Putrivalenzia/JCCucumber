@@ -1,4 +1,10 @@
 Feature: Login Page Test
+  Scenario: Login Valid Test
+    Given User access url HRM
+    When User enter valid username
+    And User enter valid password
+    And User click button login
+    Then User get text title page dashboard
 
   Scenario: Login With Invalid Username Test
     Given User access url HRM
@@ -21,9 +27,3 @@ Feature: Login Page Test
     And User click button login
     Then User get text password required
 
-  Scenario: Login Valid Test
-    Given User access url HRM
-    When User enter valid username
-    And User enter valid password
-    And User click button login
-    Then User get text title page dashboard

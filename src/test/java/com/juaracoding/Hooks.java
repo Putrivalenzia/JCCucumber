@@ -5,12 +5,12 @@ import com.juaracoding.utils.TestCases;
 import com.juaracoding.utils.Utils;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
-import io.cucumber.java.After;
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.AfterStep;
-import io.cucumber.java.Before;
+import com.relevantcodes.extentreports.LogStatus;
+import io.cucumber.java.*;
 import jdk.jshell.execution.Util;
 import org.openqa.selenium.WebDriver;
+
+import java.io.IOException;
 
 public class Hooks {
     static WebDriver driver;
@@ -26,10 +26,14 @@ public class Hooks {
         Utils.testCount++;
     }
 
-//    @AfterStep
-//    public void getResultStatus(){
-//
-//    }
+    @AfterStep
+    public void getResultStatus(Scenario scenario) throws IOException {
+        if(scenario.isFailed()){
+            String screenshotPath = Utils.getScreenshot(driver, scenario.getName().replace(" ","_"));
+            extentTest.log(LogStatus.FAIL, scenario.getName()+"\n"
+                    +extentTest.addScreenCapture(screenshotPath));
+        }
+    }
 
     @After
     public void endTestCase(){

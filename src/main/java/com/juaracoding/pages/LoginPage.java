@@ -14,7 +14,7 @@ public class LoginPage {
         PageFactory.initElements(driver, this);
     }
 
-    // Locator @FindBy
+    // Locator Element @FindBy
     @FindBy(xpath = "/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/div[2]/input")
     WebElement username;
 
@@ -36,12 +36,24 @@ public class LoginPage {
     @FindBy (xpath = "/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/span")
     WebElement txtUsernameRequired;
 
+    @FindBy (xpath = "//p[@class='oxd-userdropdown-name']")
+    WebElement userProfile;
+
+    @FindBy (xpath = "//a[normalize-space()='Logout']")
+    WebElement linkLogout;
+
     // Custom Method
 
     public void login (String usernameValue, String passwordValue){
+        driver.navigate().refresh();
         username.sendKeys(usernameValue);
         password.sendKeys(passwordValue);
         btnLogin.click();
+    }
+
+    public void logout(){
+        userProfile.click();
+        linkLogout.click();
     }
     public void enterUsername(String username){
 

@@ -48,11 +48,12 @@ public class TestLogin {
 
     }
 
+
     @Then("User get text title page dashboard")
     public void user_get_text_title_page_dashboard(){
         Assert.assertEquals(loginPage.getTxtDashboard(), "Dashboard");
         extentTest.log(LogStatus.PASS, "User get text title page dashboard");
-
+        loginPage.logout();
     }
 
     @When("User enter invalid username")
@@ -92,7 +93,7 @@ public class TestLogin {
 
     @Then("User get text password required")
     public void user_get_text_password_required(){
-        Assert.assertEquals(loginPage.getTxtPasswordRequired(), "Required");
+        Assert.assertEquals(loginPage.getTxtPasswordRequired(), "Require");
         extentTest.log(LogStatus.PASS, "User get text invalid credentials");
 
     }
